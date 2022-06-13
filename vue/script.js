@@ -13,3 +13,53 @@ Predisporre un campo di input testuale (sempre visibile) e un pulsante “aggiun
 Bonus:
 1- oltre al click sul pulsante, intercettare anche il tasto ENTER per aggiungere il todo alla lista
 2- cliccando sul testo dell’item, invertire il valore della proprietà done del todo corrispondente (se done era uguale a false, impostare true e viceversa)*/
+
+const toDOList = new Vue({
+    el: '#app',
+    data : {
+        newTodo : {
+            text : "",
+            done : false
+        },
+        toDo : [
+            {
+                text : "trovare un pc da acquistare",
+                done : false
+            },
+            {
+                text : "verificare che sia IL PC e non un PC",
+                done : true
+            },
+            {
+                text : "imparare a programmare",
+                done : false
+            },
+            {
+                text : "divenatre vice presidente di ACCENTURE",
+                done : true
+            }
+        ]
+    },
+    methods : {
+        newItem(){
+            if(this.newTodo !== ""){
+                this.toDo.push(this.newTodo);
+                this.newTodo = {
+                    text : "",
+                    done : false
+                };
+            }
+        },
+        deleteItem(index) {
+            this.toDo.splice(index,1)
+        },
+        underline(toDo) {
+            if(toDo.done === false){
+                toDo.done = true
+            }
+            else {
+                toDo.done = false
+            }
+        }
+    }
+}) 
